@@ -1,0 +1,9 @@
+language: python
+python:
+- '2.7'
+install:
+- pip install -r requirements.txt
+- pip install .
+script: nosetests
+env:
+  secure: oBN1qkRwhAvScylaM081Q8FNvTvHoznxXJvp4Ik1FkIlZKZkSroTjhDAekWjVrDGG/pXUPQubjS7Ty+G5gURKB2bBGPU/xBg/QBz3sDTCmtF9EKpfaZSiYVWYaagi+hwBHhK9DHTRnWrBh0CWcWx4632u2hAZ8thHx38ruB5VjA=
