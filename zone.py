@@ -278,7 +278,7 @@ class Zone(object):
 
         if product == 'controller':
             suffix = 'sh' if platform == 'linux' else 'exe'
-            return 'controller-{0}bit_{1}-{2}.{3}'.format(bits, platform, self.version, suffix)
+            return 'controller_{0}bit_{1}-{2}.{3}'.format(bits, platform, self.version, suffix)
         elif product == 'euem-processor':
             suffix = 'sh' if platform == 'linux' else 'exe'
             return 'euem-{0}bit-{1}-{2}.{3}'.format(bits, platform, self.version, suffix)
