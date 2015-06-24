@@ -17,12 +17,12 @@ SYNOPSIS
 
 ::
 
-    download.py [options] product_name
+    download-appdynamics [options] product_name
 
 DESCRIPTION
 -----------
 
-``download.py`` is a tool to automate downloading product releases from
+``download-appdynamics`` is a tool to automate downloading product releases from
 the AppDynamics web site. It automates the entire process for you:
 
 -  opening a connection to `<http://download.appdynamics.com>`__,
@@ -55,6 +55,14 @@ download. The script is capable of downloading the following products:
 ``geo-server`` : On-premise Geo Server
 
 ``ad4db`` : AppDynamics for Databases server
+
+``dbagent``: AppDynamics integrated database agent
+
+``events-service``: Events service for analytics
+
+``analytics-processor``: On-premise analytics processor
+
+``analytics-agent``: Analytics agent extension
 
 ``ios-agent`` : SDK for Apple iOS devices
 
@@ -104,22 +112,22 @@ connections, cookies, etc.
 EXAMPLES
 --------
 
-``./download.py -u tradel@appdynamics.com -p xxxxxxxx java-agent`` :
+``./download-appdynamics -u tradel@appdynamics.com -p xxxxxxxx java-agent`` :
 Download a copy of the latest version of the Java agent.
 
-``./download.py -u tradel@appdynamics.com -p xxxxxxxx -v 3.7.17 java-agent``
+``./download-appdynamics -u tradel@appdynamics.com -p xxxxxxxx -v 3.7.17 java-agent``
 : Download version 3.7.17 of the Java agent.
 
-``./download.py -u tradel@appdynamics.com -p xxxxxxxx -o foo.zip java-agent``
+``./download-appdynamics -u tradel@appdynamics.com -p xxxxxxxx -o foo.zip java-agent``
 : Download the latest Java agent, and save the file as ``foo.zip``.
 
-``./download.py -u tradel@appdynamics.com -p xxxxxxxx -b64 -f rpm php-agent``
+``./download-appdynamics -u tradel@appdynamics.com -p xxxxxxxx -b64 -f rpm php-agent``
 : Download the latest 64-bit PHP agent in RPM package format.
 
-``./download.py -u tradel@appdynamics.com -p xxxxxxxx --os=windows controller``
+``./download-appdynamics -u tradel@appdynamics.com -p xxxxxxxx --os=windows controller``
 : Download the latest controller for Windows.
 
-``./download.py -n -q -u tradel@appdynamics.com -p xxxxxxxx --os=windows controller``
+``./download-appdynamics -n -q -u tradel@appdynamics.com -p xxxxxxxx --os=windows controller``
 : Don't download anything, just print the URL where version 3.9.5 of the
 controller can be found.
 
@@ -128,7 +136,7 @@ SAMPLE OUTPUT
 
 ::
 
-    bash% ./download.py -u tradel@appdynamics.com -p xxxxxxxx java-agent
+    bash% ./download-appdynamics -u tradel@appdynamics.com -p xxxxxxxx java-agent
     Checking available product versions . . .
     Listing available files . . .
     Downloading file checksums . . .
@@ -141,7 +149,7 @@ SAMPLE OUTPUT
 REQUIREMENTS
 ------------
 
-``download.py`` requires 2.6 or later. It has been tested with 2.6 and
+``download-appdynamics`` requires 2.6 or later. It has been tested with 2.6 and
 2.7. It has not been tested with python3.
 
 The following modules are required:
