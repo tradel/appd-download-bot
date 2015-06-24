@@ -1,9 +1,14 @@
 language: python
 python:
+- '2.6'
 - '2.7'
+- '3.3'
+- '3.4'
 install:
 - pip install -r requirements.txt
 - pip install .
 script: nosetests
 env:
-  secure: oBN1qkRwhAvScylaM081Q8FNvTvHoznxXJvp4Ik1FkIlZKZkSroTjhDAekWjVrDGG/pXUPQubjS7Ty+G5gURKB2bBGPU/xBg/QBz3sDTCmtF9EKpfaZSiYVWYaagi+hwBHhK9DHTRnWrBh0CWcWx4632u2hAZ8thHx38ruB5VjA=
+  global:
+    - secure: "XDOk/om6WGRh4TTvz+jB/KP5yZsZYcq4mB+uXdnJCzL4aO7rdeq759dDoN3URLoIAEm+BSBOx4ZtIeWu+LOSsFWm1ktKNXqfT1b7J9b5TjyHT5wxUI9oAE3GqxrjH+GNoVx8dVhWHVDWE5auz5VMURtQk/OEwDA7xszBz+lT07g="
+    - secure: "U2g7vuKvRrsA/l1BrF7A0l3TKv2VFTA47yqDSiaMnhc6hRL6RAY2NpuHD+1HDTSbfZ1gosJtN1045+u2ub9PLLUqpDmfhJILkvkY+IhFmq0/1zQI2Qs2lgwqdPUSrNo2KqE/piPdldw46kH7orq6AfpQ+sOKjMBtdkjAff7SDuE="
