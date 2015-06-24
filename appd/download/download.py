@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import sys
 import argparse
@@ -108,7 +109,7 @@ def parse_args():
     return argp.parse_args()
 
 
-if __name__ == '__main__':
+def main():
     Zone.status += status_callback
     Zone.success += success_callback
     Zone.download_progress += save_callback
@@ -127,3 +128,6 @@ if __name__ == '__main__':
 
     sys.exit(0)
 
+
+if __name__ == '__main__':
+    main()

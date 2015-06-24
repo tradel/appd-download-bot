@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import bs4
 import mechanize
 import hashlib
@@ -8,9 +10,6 @@ import io
 import time
 import atexit
 import events
-
-
-__author__ = 'tradel'
 
 
 class Zone(object):

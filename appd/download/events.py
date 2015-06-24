@@ -1,5 +1,8 @@
+# -*- coding: utf-8 -*-
+
 
 class Event:
+
     def __init__(self):
         """ Create an event.
 
@@ -40,7 +43,7 @@ class Event:
         for handler in self.handlers:
             handler(*args, **kargs)
 
-    def getHandlerCount(self):
+    def get_handler_count(self):
         """ Returns the length of the handler chain for this event.
 
         :return: Length of the handler chain.
@@ -51,5 +54,4 @@ class Event:
     __iadd__ = handle
     __isub__ = unhandle
     __call__ = fire
-    __len__  = getHandlerCount
-
+    __len__ = get_handler_count
