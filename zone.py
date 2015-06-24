@@ -24,11 +24,12 @@ class Zone(object):
 
     PRODUCTS = ['controller', 'euem-processor', 'java-agent', 'ibm-agent', 'machine-agent',
                 'dotnet-agent', 'php-agent', 'ios-agent', 'android-agent', 'geo-server', 'ad4db',
-                'events-service', 'analytics-agent', 'analytics-processor']
+                'events-service', 'analytics-agent', 'analytics-processor', 'dbagent']
 
     PRODUCT_MAP = {'controller': 'controller',
                    'euem-processor': 'euem',
                    'dotnet-agent': 'dotNetAgentSetup',
+                   'dbagent': 'dbagent',
                    'ad4db': 'AppD-Database',
                    'java-agent': 'AppServerAgent',
                    'ibm-agent': 'AppServerAgent-ibm',
@@ -256,7 +257,7 @@ class Zone(object):
             bits = int(bits)
 
         if product == 'controller':
-            assert platform in ['linux', 'windows'], 'Platform must be "linux" or "windows".'
+            assert platform in ['linux', 'windows', 'mac'], 'Platform must be "linux", "windows", or "mac".'
             assert bits in [32, 64], 'You must select 32bit or 64bit.'
         elif product == 'euem-processor':
             assert platform in ['linux', 'windows'], 'Platform must be "linux" or "windows".'
@@ -274,7 +275,7 @@ class Zone(object):
         else:
             assert product in ['java-agent', 'ibm-agent', 'machine-agent', 'ios-agent',
                                'android-agent', 'geo-server', 'events-service',
-                               'analytics-processor', 'analytics-agent'], \
+                               'analytics-processor', 'analytics-agent', 'dbagent'], \
                 'Product name is not valid.'
 
     def _product2filename(self, product, platform='linux', bits=64, package='rpm'):
