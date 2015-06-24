@@ -75,14 +75,13 @@ def parse_args():
                       help='Request 32-bit or 64-bit version of the product. Defaults to 64-bit.')
 
     argp.add_argument('-s', '--os',
-                      choices=['linux', 'windows'],
+                      choices=['linux', 'windows', 'mac'],
                       help='Operating system platform.')
 
     argp.add_argument('-f', '--format',
                       choices=['tar', 'rpm'],
                       default='tar',
-                      help='Packaging format for Linux downloads. Currently only affects the PHP agent, which ' +
-                           'is available in tar and rpm formats.')
+                      help='Packaging format for downloads.')
 
     # file selection arguments
     argp.add_argument('-z', '--zone',
