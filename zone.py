@@ -23,7 +23,8 @@ class Zone(object):
                 'saas': 1}
 
     PRODUCTS = ['controller', 'euem-processor', 'java-agent', 'ibm-agent', 'machine-agent',
-                'dotnet-agent', 'php-agent', 'ios-agent', 'android-agent', 'geo-server', 'ad4db']
+                'dotnet-agent', 'php-agent', 'ios-agent', 'android-agent', 'geo-server', 'ad4db',
+                'events-service', 'analytics-agent', 'analytics-processor']
 
     PRODUCT_MAP = {'controller': 'controller',
                    'euem-processor': 'euem',
@@ -35,7 +36,10 @@ class Zone(object):
                    'php-agent': 'appdynamics-php-agent',
                    'ios-agent': 'iOSAgent',
                    'android-agent': 'AndroidAgent',
-                   'geo-server': 'GeoServer'}
+                   'geo-server': 'GeoServer',
+                   'events-service': 'events-service',
+                   'analytics-agent': 'analytics-agent',
+                   'analytics-processor': 'analytics-processor'}
 
     status = events.Event()
     success = events.Event()
@@ -269,7 +273,8 @@ class Zone(object):
             assert package in ['rpm', 'tar'], 'You must select RPM or tar.bz2 packaging.'
         else:
             assert product in ['java-agent', 'ibm-agent', 'machine-agent', 'ios-agent',
-                               'android-agent', 'geo-server'], \
+                               'android-agent', 'geo-server', 'events-service',
+                               'analytics-processor', 'analytics-agent'], \
                 'Product name is not valid.'
 
     def _product2filename(self, product, platform='linux', bits=64, package='rpm'):
