@@ -2,3 +2,5 @@
 *.pyc
 *.iml
 *.zip
+*.sh
+*.dmg
