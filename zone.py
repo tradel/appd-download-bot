@@ -42,6 +42,10 @@ class Zone(object):
                    'analytics-agent': 'analytics-agent',
                    'analytics-processor': 'analytics-processor'}
 
+    PLATFORM_EXT_MAP = {'linux': 'sh',
+                        'windows': 'exe',
+                        'mac': 'dmg'}
+
     status = events.Event()
     success = events.Event()
     download_progress = events.Event()
@@ -258,7 +262,10 @@ class Zone(object):
 
         if product == 'controller':
             assert platform in ['linux', 'windows', 'mac'], 'Platform must be "linux", "windows", or "mac".'
-            assert bits in [32, 64], 'You must select 32bit or 64bit.'
+            if platform == 'mac':
+                assert bits != 32, 'A 32bit installer is not available on the Mac platform.'
+            else:
+                assert bits in [32, 64], 'You must select 32bit or 64bit.'
         elif product == 'euem-processor':
             assert platform in ['linux', 'windows'], 'Platform must be "linux" or "windows".'
             assert bits == 64, 'The EUEM processor is only supported as a 64bit installer.'
@@ -283,10 +290,10 @@ class Zone(object):
             bits = int(bits)
 
         if product == 'controller':
-            suffix = 'sh' if platform == 'linux' else 'exe'
+            suffix = Zone.PLATFORM_EXT_MAP[platform]
             return 'controller_{0}bit_{1}-{2}.{3}'.format(bits, platform, self.version, suffix)
         elif product == 'euem-processor':
-            suffix = 'sh' if platform == 'linux' else 'exe'
+            suffix = Zone.PLATFORM_EXT_MAP[platform]
             return 'euem-{0}bit-{1}-{2}.{3}'.format(bits, platform, self.version, suffix)
         elif product == 'dotnet-agent':
             return 'dotNetAgentSetup{0}-{1}.msi'.format(('64' if bits == 64 else ''), self.version)
@@ -301,7 +308,7 @@ class Zone(object):
                 return 'appdynamics-php-agent-{0}-linux-{1}.tar.bz2'.format(arch, self.version)
         else:
             def zipname(name):
-                return '{0}-{1}.zip'.format(self.PRODUCT_MAP[name], self.version)
+                return '{0}-{1}.zip'.format(Zone.PRODUCT_MAP[name], self.version)
 
             return zipname(product)
 
