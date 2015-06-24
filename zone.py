@@ -53,7 +53,7 @@ class Zone(object):
     user_home = os.environ['HOME']
     cookie_fname = os.path.join(user_home, '.cookiejar')
 
-    def __init__(self, zone_id, version=None, username=None, password=None, debug=False):
+    def __init__(self, zone_id, version=None, username=None, password=None, debug=False, use_cookies=True):
         self._cookie_jar = self._browser = None
         self._zone_id = None  #
         self._version = None  # currently selected version
@@ -61,6 +61,7 @@ class Zone(object):
         self._files = None  # dict of {file, url} available for selected version
         self._checksums = None  # dict of {file, sha256} for available files
         self.debug = debug
+        self.use_cookies = use_cookies
         self.username = username
         self.password = password
 
@@ -74,15 +75,17 @@ class Zone(object):
         if cj is None:
             cj = mechanize.LWPCookieJar(Zone.cookie_fname)
 
-            try:
-                cj.load()
-            except IOError:
-                pass
+            if self.use_cookies:
+                try:
+                    cj.load()
+                except IOError:
+                    pass
 
             def save_cookies():
-                Zone.status(self, "Saving cookies to " + Zone.cookie_fname)
-                cj.save()
-                Zone.success(self)
+                if self.use_cookies:
+                    Zone.status(self, "Saving cookies to " + Zone.cookie_fname)
+                    cj.save()
+                    Zone.success(self)
 
             atexit.register(save_cookies)
             self._cookie_jar = cj
@@ -138,6 +141,9 @@ class Zone(object):
     def _open_url(self, url):
         browser = self.browser
         browser.open(url)
+
+        assert self.username is not None, 'Username must be supplied'
+        assert self.password is not None, 'Password must be supplied'
 
         # if we get redirected to the SSO login page, fill it in and submit the form:
         if "login" in browser.geturl():
