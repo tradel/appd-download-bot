@@ -21,7 +21,7 @@ def read(*filenames, **kwargs):
     return sep.join(buf)
 
 setup(name='AppDynamicsDownloader',
-      version='0.1.0',
+      version='0.1.1',
       description='AppDynamics Download Robot',
       long_description=read('README.md'),
       author='Todd Radel',
