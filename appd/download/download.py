@@ -114,6 +114,7 @@ def main():
     Zone.success += success_callback
     Zone.download_progress += save_callback
 
+    global args
     args = parse_args()
     z = Zone(args.zone, args.version,
              username=args.username, password=args.password, debug=args.debug)
