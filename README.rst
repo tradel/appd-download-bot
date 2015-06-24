@@ -25,7 +25,7 @@ DESCRIPTION
 ``download.py`` is a tool to automate downloading product releases from
 the AppDynamics web site. It automates the entire process for you:
 
--  opening a connection to `http://download.appdynamics.com <>`__,
+-  opening a connection to `<http://download.appdynamics.com>`__,
 -  logging into the Single Sign-On (SSO) server,
 -  selecting the product zone (SaaS or on-premise),
 -  selecting the product version,
