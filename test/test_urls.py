@@ -2,7 +2,8 @@
 
 import unittest
 import os
-from zone import Zone
+from appd.download import Zone
+
 
 class UrlParsingTest(unittest.TestCase):
 

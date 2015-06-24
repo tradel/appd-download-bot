@@ -1,1 +1,2 @@
-__author__ = 'tradel'
+# -*- coding: utf-8 -*-
+
