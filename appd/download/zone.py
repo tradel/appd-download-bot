@@ -166,6 +166,9 @@ class Zone(object):
             soup = bs4.BeautifulSoup(browser.response().read())
             dropdown = soup.find('table', id='version_disp').find('select')
             for opt in dropdown.find_all('option'):
+                if opt['value'] == 'latest':
+                    m = re.search(r'latest\s+\((.*)\)', opt.text)
+                    versions.append(m.group(1))
                 if re.match(r'[0-9]+', opt['value']):
                     versions.append(opt['value'])
 
@@ -189,7 +192,6 @@ class Zone(object):
                 attrs = {}
                 for (x, y) in link.attrs:
                     attrs[x] = y
-                # attrs = {x: y for (x, y) in link.attrs}
                 if link.url == '#' and 'onclick' in attrs and 'link_check' in attrs['onclick']:
                     m = re.match(r"link_check\('(.*)'\);return false;", attrs['onclick'])
                     files[link.text] = Zone.BASE_URL + m.group(1)
