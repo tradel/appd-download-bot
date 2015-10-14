@@ -57,7 +57,7 @@ def save_callback(src, eargs):
             return
         last_time = eargs['now_time']
 
-        fname_width = (term_width - (4 + 4 + 3 + 8 + 3 + 8 + 2)) / 2
+        fname_width = (term_width - (4 + 4 + 3 + 8 + 3 + 7 + 2)) / 2
         bar_width = fname_width
         if fname_width > MAX_FILENAME_WIDTH:
             bar_width += fname_width - MAX_FILENAME_WIDTH
@@ -65,7 +65,8 @@ def save_callback(src, eargs):
 
         bar = '=' * (pct * bar_width / 100)
 
-        fmt_string = '\r{0:<' + str(fname_width) + '} [{1:<' + str(bar_width) + '}] {2:3d}% | {3:>8} | {4:>6}ps'
+        fmt_string = '\r{0:<' + str(fname_width) + '.' + str(fname_width) + '} ' +\
+                     '[{1:<' + str(bar_width) + '.' + str(bar_width) + '}] {2:3d}% | {3:>8} | {4:>.7}ps'
 
         print fmt_string.format(eargs['filename'], bar, pct,
                                 size(eargs['bytes_read']), size(kbps)),
