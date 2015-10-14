@@ -193,7 +193,7 @@ class Zone(object):
                 for (x, y) in link.attrs:
                     attrs[x] = y
                 if link.url == '#' and 'onclick' in attrs and 'link_check' in attrs['onclick']:
-                    m = re.match(r"link_check\('(.*)'\);return false;", attrs['onclick'])
+                    m = re.match(r".*link_check\('(.*)'\);return false;", attrs['onclick'])
                     files[link.text] = Zone.BASE_URL + m.group(1)
 
             self._files = files
