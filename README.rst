@@ -2,7 +2,7 @@
 AppDynamics Download Robot
 ==========================
 
-Current version: 0.2.1
+Current version: 0.2.2
 Released: 21-Dec-2015
 
 .. image:: https://img.shields.io/travis/tradel/appd-download-bot.svg
@@ -162,6 +162,20 @@ SAMPLE OUTPUT
 
     Done!
     Saving cookies to /Users/tradel/.cookiejar . . .
+
+
+AUTHENTICATION
+--------------
+
+You can supply your username and password to the script in any of the following ways. They are
+listed in the order the script will try them:
+
+#. First, the script looks for the ``-u`` and ``-p`` arguments (or ``--username`` and ``--password``)
+   on the command line.
+#. If credentials are not supplied on the command line, the script will next check for the existence of
+   environment variables named ``APPD_SSO_USERNAME`` and ``APPD_SSO_PASSWORD``.
+#. If the environment variables do not exist, the script will prompt for a username and password to be
+   supplied from the console.
 
 
 REQUIREMENTS
