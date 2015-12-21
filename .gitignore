@@ -8,3 +8,4 @@ dist/
 *.sh
 *.dmg
 README.html
+.eggs/
