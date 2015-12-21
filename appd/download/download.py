@@ -4,6 +4,9 @@
 import sys
 import argparse
 import time
+import getpass
+import os
+import sys
 
 from zone import Zone
 from term import get_terminal_size
@@ -98,11 +101,9 @@ def parse_args():
 
     # authentication arguments
     argp.add_argument('-u', '--username',
-                      required=True,
                       help='Credentials to use for logging into AppDynamics SSO server.')
 
     argp.add_argument('-p', '--password',
-                      required=True,
                       help='Password for SSO login.')
 
     # platform arguments
@@ -156,8 +157,24 @@ def main():
 
     global args
     args = parse_args()
+
+    username = args.username
+    if not username:
+        if 'APPD_SSO_USERNAME' in os.environ:
+            username = os.environ['APPD_SSO_USERNAME']
+        else:
+            print 'Username: ',
+            username = sys.stdin.readline().strip()
+
+    password = args.password
+    if not password:
+        if 'APPD_SSO_PASSWORD' in os.environ:
+            password = os.environ['APPD_SSO_PASSWORD']
+        else:
+            password = getpass.getpass()
+
     z = Zone(args.zone, args.version,
-             username=args.username, password=args.password, debug=args.debug)
+             username=username, password=password, debug=args.debug)
 
     if args.no_download:
         print z.get_url(args.product, platform=args.os, bits=args.bits, package=args.format)
