@@ -151,6 +151,11 @@ class Zone(object):
             browser.form['password'] = self.password
             browser.submit()
 
+            # if we get sent back to the login page again, then the login failed:
+            if "login" in browser.geturl():
+                soup = bs4.BeautifulSoup(browser.response().read())
+                error_msg = soup.find('div', class_='error-msg').find('span')
+                raise RuntimeError(error_msg.text)
         return browser
 
     def get_versions(self):
@@ -165,6 +170,7 @@ class Zone(object):
 
             soup = bs4.BeautifulSoup(browser.response().read())
             dropdown = soup.find('table', id='version_disp').find('select')
+
             for opt in dropdown.find_all('option'):
                 if opt['value'] == 'latest':
                     m = re.search(r'latest\s+\((.*)\)', opt.text)
