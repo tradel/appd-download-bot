@@ -153,7 +153,7 @@ class Zone(object):
 
             # if we get sent back to the login page again, then the login failed:
             if "login" in browser.geturl():
-                soup = bs4.BeautifulSoup(browser.response().read())
+                soup = bs4.BeautifulSoup(browser.response().read(), 'html.parser')
                 error_msg = soup.find('div', class_='error-msg').find('span')
                 raise RuntimeError(error_msg.text)
         return browser
@@ -168,7 +168,7 @@ class Zone(object):
 
             browser = self._open_url('{0}/browse/zone/{1}/'.format(self.BASE_URL, self.zone_id))
 
-            soup = bs4.BeautifulSoup(browser.response().read())
+            soup = bs4.BeautifulSoup(browser.response().read(), 'html.parser')
             dropdown = soup.find('table', id='version_disp').find('select')
 
             for opt in dropdown.find_all('option'):
