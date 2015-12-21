@@ -21,6 +21,19 @@ class AuthFailureTest(unittest.TestCase):
                          use_cookies=False)
         self.assertRaises(RuntimeError, bad_zone.get_versions)
 
+    def test_empty_password(self):
+        bad_zone = Zone(zone_id='on-premise',
+                         username=os.environ.get('APPD_SSO_USERNAME'),
+                         password='',
+                         use_cookies=False)
+        self.assertRaises(RuntimeError, bad_zone.get_versions)
+
+    def test_no_password(self):
+        bad_zone = Zone(zone_id='on-premise',
+                         username=os.environ.get('APPD_SSO_USERNAME'),
+                         password=None,
+                         use_cookies=False)
+        self.assertRaises(AssertionError, bad_zone.get_versions)
 
     def test_auth_success(self):
         self.zone.get_versions()
