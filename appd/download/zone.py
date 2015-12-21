@@ -154,8 +154,9 @@ class Zone(object):
             # if we get sent back to the login page again, then the login failed:
             if "login" in browser.geturl():
                 soup = bs4.BeautifulSoup(browser.response().read(), 'html.parser')
-                error_msg = soup.find('div', class_='error-msg').find('span')
-                raise RuntimeError(error_msg.text)
+                error_msg = soup.find('div', class_='error-msg').text
+                error_msg = ' '.join(error_msg.split())
+                raise RuntimeError(error_msg)
         return browser
 
     def get_versions(self):
