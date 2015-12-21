@@ -2,7 +2,7 @@
 AppDynamics Download Robot
 ==========================
 
-Current version: 0.2.0
+Current version: 0.2.1
 Released: 21-Dec-2015
 
 .. image:: https://img.shields.io/travis/tradel/appd-download-bot.svg
